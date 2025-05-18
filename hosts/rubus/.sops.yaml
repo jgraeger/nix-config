@@ -1,0 +1,11 @@
+keys:
+  - &hosts:
+    - &rubus age1m6qrc7gseykrk6s66sadx7m0skqc9l7x7fgszfxhhfsa4g77j3aqaey9lv
+creation_rules:
+  - path_regex: hosts/rubus/secrets.ya?ml$
+    key_groups:
+      - age:
+          - *rubus
+      - pgp:
+          - *jgraeger
+
