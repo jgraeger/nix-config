@@ -7,6 +7,8 @@
 
     ../shared/global
     ../shared/users/jgraeger
+
+    ./services/blocky.nix
   ];
 
 
@@ -50,6 +52,9 @@
     domains = [ "~." ];
     fallbackDns = [ "9.9.9.9#quad9" "149.112.122.122#quad9" ];
     dnsovertls = "true";
+    extraConfig = ''
+      DNSStubListener=no
+    '';
   };
 
   nix.settings.auto-optimise-store = false;
