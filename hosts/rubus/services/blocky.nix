@@ -19,6 +19,13 @@
         "2606:4700:4700::1111"    
       ];
 
+      customDNS = {
+        customTTL = "5m";
+        mapping = {
+          "rubus.net.graeger.dev" = "100.64.10.1,fd00:314::2";
+        };
+      };
+      
       blocking = {
         denylists = {          
           ads = [
