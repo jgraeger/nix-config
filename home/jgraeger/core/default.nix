@@ -9,6 +9,7 @@
 
   imports = [
      ./git.nix
+     ./helix
      ./ssh.nix
   ];
 
