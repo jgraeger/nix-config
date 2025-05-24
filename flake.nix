@@ -21,24 +21,20 @@
       url = "github:ndom91/rose-pine-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { 
-    self, 
+  outputs = {
+    self,
     nixpkgs,
     home-manager,
-    ... 
+    ...
   } @ inputs: let
     inherit (self) outputs;
     lib = nixpkgs.lib // home-manager.lib;
   in {
     inherit lib;
 
-    overlays = import ./overlays { inherit inputs outputs; };
+    overlays = import ./overlays {inherit inputs outputs;};
 
     nixosConfigurations = {
       # Desktop workstation
@@ -58,8 +54,6 @@
           inherit inputs outputs;
         };
       };
-
     };
-  
   };
 }
