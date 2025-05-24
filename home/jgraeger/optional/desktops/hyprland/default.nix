@@ -3,11 +3,13 @@
   config,
   lib,
   ...
-}: 
-{
+}: {
   imports = [
     ./binds.nix
     ./hyprlock.nix
+
+    ./decorations.nix
+    ./windows.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -15,7 +17,7 @@
 
     systemd = {
       enable = true;
-      variables = [ "--all" ];
+      variables = ["--all"];
       extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
@@ -34,6 +36,20 @@
         "QT_QPA_PLATFORM,wayland"
         "HYPRCURSOR_THEME,rose-pine-hyprcursor" # this will be better than default for now
       ];
+
+      monitor = (
+        map (
+          m: "${m.name},${
+            if m.enabled
+            then
+              "${toString m.width}x${toString m.height}@${toString m.refreshRate}"
+              + ",${toString m.x}x${toString m.y},${toString m.scale}"
+              + ",transform,${toString m.transform}"
+              + ",vrr,${toString m.vrr}"
+            else "disable"
+          }"
+        ) (config.monitors)
+      );
     };
   };
 

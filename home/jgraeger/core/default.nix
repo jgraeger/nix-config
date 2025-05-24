@@ -8,6 +8,8 @@
 }: {
 
   imports = [
+    ../../../modules/home-manager
+
     ./zsh
       
     ./fonts.nix

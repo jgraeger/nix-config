@@ -35,6 +35,7 @@
 
         modules-right = [
           "pulseaudio"
+          "network"
           "tray"
           "clock#time"
           "clock#date"
@@ -95,6 +96,18 @@
             default = ["" "" ""];
           };
           on-click = "pavucontrol";
+        };
+
+        network = {
+          format = "{ifname}";
+          format-wifi = "  {essid} ({signalStrength}%)";
+          format-ethernet = "  {ifname}";
+          format-disconnected = "Disconnected ⚠";
+          tooltip-format = " {ifname} via {gwaddri}";
+          tooltip-format-wifi = "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}";
+          tooltip-format-ethernet = " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}";
+          tooltip-format-disconnected = "Disconnected";
+          max-length = 50;
         };
       };
     };
