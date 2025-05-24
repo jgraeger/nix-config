@@ -2,11 +2,13 @@ keys:
   - &users:
     - &mora age1yubikey1qfc69dmhg9d3ujk2ghm5ppch4q7hswng7eh5pu6t27wk9akmnqv02jpx6rv
   - &hosts:
+    - &lake age1u0w5uzchauk7jlq08xzvky9f9e65jgsfacvcp7f0nktjmw5m9fkq34vu9n
     - &rubus age1m6qrc7gseykrk6s66sadx7m0skqc9l7x7fgszfxhhfsa4g77j3aqaey9lv
   
 creation_rules:
   - path_regex: hosts/shared/secrets.ya?ml$
     key_groups:
       - age:
+        - *lake
         - *mora
         - *rubus

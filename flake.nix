@@ -13,7 +13,18 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rose-pine-hypercursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { 
@@ -30,6 +41,15 @@
     overlays = import ./overlays { inherit inputs outputs; };
 
     nixosConfigurations = {
+      # Desktop workstation
+      lake = lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [./hosts/lake];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
+
       # Raspberry PI
       rubus = lib.nixosSystem {
         system = "aarch64-linux";
@@ -38,6 +58,7 @@
           inherit inputs outputs;
         };
       };
+
     };
   
   };
