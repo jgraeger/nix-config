@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./binds.nix
+    ./hyprpaper.nix
     ./hyprlock.nix
 
     ./decorations.nix

@@ -6,6 +6,7 @@
     ./optional/browsers    
   ];
 
+  wallpaper = ../../assets/wallpapers/sunset-lookout.jpg;
 
   monitors = [
     {

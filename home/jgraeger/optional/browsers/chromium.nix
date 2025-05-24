@@ -9,6 +9,7 @@
     extensions = [
       "ddkjiahejlhfcafbddmgiahcphecmpfh" # ublock lite
       "aeblfdkhhhdcdjpifhhbdiojplfjncoa" # 1Password
+      "egehpkpgpgooebopjihjmnpejnjafefi" # Better History
     ];
   };
 }
