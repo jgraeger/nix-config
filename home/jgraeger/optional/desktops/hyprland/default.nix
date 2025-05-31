@@ -39,6 +39,10 @@
         "HYPRCURSOR_THEME,rose-pine-hyprcursor" # this will be better than default for now
       ];
 
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       monitor = (
         map (
           m: "${m.name},${

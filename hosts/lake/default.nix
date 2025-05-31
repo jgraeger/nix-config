@@ -20,6 +20,7 @@
     # Optional host modules
 
     ../shared/optional/audio.nix
+    ../shared/optional/libvirt.nix
     ../shared/optional/services/greetd.nix
     ../shared/optional/hyprland.nix
     ../shared/optional/1password.nix
@@ -53,7 +54,6 @@
     enableIPv6 = true;
   };
 
-
   boot.bootspec.enable = true;
   boot.loader = {
     # systemd-boot is replaced by lanzaboote
@@ -69,13 +69,13 @@
   };
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       networkmanagerapplet
 
       sbctl # secureboot debug and troubleshoot
       vulkan-tools
+      libva-utils
       ;
   };
 
@@ -84,6 +84,9 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";    
   };
+
+  # DualBoot with windows
+  time.hardwareClockInLocalTime = true;
 
   system.stateVersion = "25.05";
 }
