@@ -29,7 +29,12 @@
   ];
 
   hardware = {
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+      ];
+    };
     nvidia = {
       modesetting.enable = true;
       # Try OpenSource drivers
@@ -67,9 +72,17 @@
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
+      networkmanagerapplet
+
       sbctl # secureboot debug and troubleshoot
       vulkan-tools
       ;
+  };
+
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NVD_BACKEND = "direct";    
   };
 
   system.stateVersion = "25.05";

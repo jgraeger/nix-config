@@ -19,6 +19,7 @@ in {
     userEmail = "jgraeger@posteo.de";
     
     extraConfig = {
+      core.editor = "hx";
       
       log.showSignature = "true";
       init.defaultBranch = "main";

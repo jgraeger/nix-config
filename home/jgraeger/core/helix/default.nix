@@ -40,6 +40,14 @@ in {
           language-servers = ["nixd" "nil"];
           formatter.command = "alejandra";
         }
+        {
+          name = "go";
+          language-servers = ["gopls" "golangci-lint-lsp"];
+          formatter = {
+            command = "goimports";
+          };
+          auto-format = true;
+        }
       ];
 
       language-server = {

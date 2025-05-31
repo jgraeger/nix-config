@@ -12,7 +12,7 @@ in {
     extraGroups = ifGroupsExist [
       "docker"
       "git"
-      "network"
+      "networkmanager"
       "wheel"
     ];
 

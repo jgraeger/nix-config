@@ -98,7 +98,7 @@
           on-click = "pavucontrol";
         };
 
-        network = {
+        "network" = {
           format = "{ifname}";
           format-wifi = "  {essid} ({signalStrength}%)";
           format-ethernet = "  {ifname}";
@@ -108,6 +108,7 @@
           tooltip-format-ethernet = " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}";
           tooltip-format-disconnected = "Disconnected";
           max-length = 50;
+          on-click = "if pgrep -x \"nm-applet\" > /dev/null; then killall nm-applet else nm-applet --indicator & fi";
         };
       };
     };

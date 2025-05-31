@@ -4,6 +4,7 @@
 
     ./optional/desktops
     ./optional/browsers    
+    ./optional/development
   ];
 
   wallpaper = ../../assets/wallpapers/sunset-lookout.jpg;
