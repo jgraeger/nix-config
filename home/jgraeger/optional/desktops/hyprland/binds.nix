@@ -6,7 +6,6 @@
 }:
 {
   wayland.windowManager.hyprland.settings = {
-
     # =======================
     #  Mouse binds
     # =======================
@@ -53,6 +52,8 @@
       in
       lib.flatten [
 
+        "ALT,q,killactive"
+
         # ===================
         #  Quick launcher
         # ===================
@@ -61,9 +62,13 @@
         "SHIFT_ALT,space,exec,rofi -show run"
         "SUPER,s,exec,rofi -show ssh"
         "ALT,tab,exec,rofi -show window"
-
-        "ALT,q,exec,${terminal}"
+        
+        "ALT,RETURN,exec,${terminal}"
         "CTRL_ALT,e,exec,${terminal} ${editor}"
+
+        # workspaces
+        (map (n: "ALT,${n},workspace,name:${n}") workspaces)
+        (map (n: "SHIFT_ALT,${n},movetoworkspace,${n}") workspaces)
 
         # ===================
         # Session control

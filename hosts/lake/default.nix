@@ -4,7 +4,10 @@
   config,
   pkgs,
   ...
-}: {
+}:
+let
+  iGPUid = "8086:4680";
+in {
   imports = [
     # Hardware
     ./hardware-configuration.nix
@@ -29,16 +32,23 @@
     ../shared/users/jgraeger
   ];
 
+  # Disable iGPU
+  boot = {
+    # Prevent intel kernel modules from loading 
+    blacklistedKernelModules = [ "snd_hda_intel" "snd_hda_codec_hdmi" "i915" ];
+    # Bind iGPU to vfio-pci
+    kernelParams = [ "vfio-pci.ids=${iGPUid}" ];
+  };
+  
   hardware = {
     graphics = {
       enable = true;
-      extraPackages = with pkgs; [
-        nvidia-vaapi-driver
-      ];
     };
     nvidia = {
       modesetting.enable = true;
       # Try OpenSource drivers
+
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       open = true;
       powerManagement.enable = true;
 
@@ -82,7 +92,7 @@
   environment.variables = {
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    NVD_BACKEND = "direct";    
+    NVD_BACKEND = "direct";
   };
 
   # DualBoot with windows
