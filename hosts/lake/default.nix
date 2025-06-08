@@ -26,6 +26,7 @@ in {
     ../shared/optional/libvirt.nix
     ../shared/optional/services/greetd.nix
     ../shared/optional/hyprland.nix
+    ../shared/optional/plymouth.nix
     ../shared/optional/1password.nix
  
     # User settings
